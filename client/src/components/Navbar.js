@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Menu, X, User, LogOut, BookOpen, Home, Settings } from 'lucide-react';
+import { Menu, X, User, LogOut, BookOpen, Home, Settings, Bot } from 'lucide-react';
 
 function Navbar() {
   const { currentUser, userProfile, logout } = useAuth();
@@ -40,6 +40,10 @@ function Navbar() {
             <Link to="/courses" className="text-gray-600 hover:text-primary-600 transition-colors">
               <BookOpen className="w-4 h-4 inline mr-1" />
               Courses
+            </Link>
+            <Link to="/ai-features" className="text-gray-600 hover:text-primary-600 transition-colors">
+              <Bot className="w-4 h-4 inline mr-1" />
+              AI Features
             </Link>
             
             {currentUser ? (
@@ -142,6 +146,13 @@ function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Courses
+              </Link>
+              <Link
+                to="/ai-features"
+                className="block px-3 py-2 text-gray-600 hover:text-primary-600"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                AI Features
               </Link>
               
               {currentUser ? (

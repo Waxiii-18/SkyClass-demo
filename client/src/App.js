@@ -10,6 +10,7 @@ import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
+import AIFeatures from './pages/AIFeatures';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
                 <AdminDashboard />
               </ProtectedRoute>
             } />
+            <Route path="/ai-features" element={<AIFeatures />} />
           </Routes>
         </div>
       </Router>

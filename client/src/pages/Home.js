@@ -10,7 +10,11 @@ import {
   Globe,
   CheckCircle,
   ArrowRight,
-  Play
+  Play,
+  Bot,
+  Brain,
+  Sparkles,
+  TrendingUp
 } from 'lucide-react';
 
 function Home() {
@@ -36,6 +40,29 @@ function Home() {
       icon: <Users className="w-6 h-6" />,
       title: "Collaborative Learning",
       description: "Connect with peers and instructors in real-time discussions."
+    }
+  ];
+
+  const aiFeatures = [
+    {
+      icon: <Bot className="w-6 h-6" />,
+      title: "AI Study Assistant",
+      description: "Get personalized help and guidance from our AI tutor"
+    },
+    {
+      icon: <Brain className="w-6 h-6" />,
+      title: "Smart Quiz Generator",
+      description: "AI-generated quizzes tailored to your learning progress"
+    },
+    {
+      icon: <Sparkles className="w-6 h-6" />,
+      title: "Note Summarizer",
+      description: "Transform your notes into concise, actionable summaries"
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6" />,
+      title: "Progress Analyzer",
+      description: "Get AI insights on your learning patterns and performance"
     }
   ];
 
@@ -98,6 +125,44 @@ function Home() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Features Section */}
+      <section className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-2 rounded-full">
+                <Sparkles className="w-8 h-8 text-purple-600" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                AI-Powered Learning
+              </h2>
+            </div>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+              Experience the future of education with our cutting-edge AI features designed to enhance your learning journey.
+            </p>
+            <Link 
+              to="/ai-features" 
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
+            >
+              Explore AI Features
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {aiFeatures.map((feature, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 text-center">{feature.title}</h3>
+                <p className="text-gray-600 text-center">{feature.description}</p>
               </div>
             ))}
           </div>
