@@ -17,26 +17,24 @@ if (!admin.apps.length) {
         storageBucket: process.env.CLOUD_STORAGE_BUCKET || process.env.FIREBASE_PROJECT_ID + '.appspot.com'
       });
       console.log('✅ Firebase Admin initialized successfully using service account file');
+    } else if (process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_PRIVATE_KEY) {
+      // Use environment variables (for Render deployment)
+      admin.initializeApp({
+        credential: admin.credential.cert({
+          project_id: process.env.FIREBASE_PROJECT_ID,
+          private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+          private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+          client_email: process.env.FIREBASE_CLIENT_EMAIL,
+          client_id: process.env.FIREBASE_CLIENT_ID,
+          auth_uri: process.env.FIREBASE_AUTH_URI || "https://accounts.google.com/o/oauth2/auth",
+          token_uri: process.env.FIREBASE_TOKEN_URI || "https://oauth2.googleapis.com/token",
+        }),
+        storageBucket: process.env.CLOUD_STORAGE_BUCKET || process.env.FIREBASE_PROJECT_ID + '.appspot.com'
+      });
+      console.log('✅ Firebase Admin initialized successfully using environment variables');
     } else {
-      // Fallback to environment variables
-      if (process.env.FIREBASE_PROJECT_ID) {
-        admin.initializeApp({
-          credential: admin.credential.cert({
-            project_id: process.env.FIREBASE_PROJECT_ID,
-            private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-            private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-            client_email: process.env.FIREBASE_CLIENT_EMAIL,
-            client_id: process.env.FIREBASE_CLIENT_ID,
-            auth_uri: process.env.FIREBASE_AUTH_URI,
-            token_uri: process.env.FIREBASE_TOKEN_URI,
-          }),
-          storageBucket: process.env.CLOUD_STORAGE_BUCKET
-        });
-        console.log('✅ Firebase Admin initialized successfully using environment variables');
-      } else {
-        console.log('⚠️  Firebase Admin not initialized - no service account file or environment variables');
-        console.log('📝 The app will run in demo mode without Firebase Admin features');
-      }
+      console.log('⚠️  Firebase Admin not initialized - missing credentials');
+      console.log('📝 The app will run in demo mode without Firebase Admin features');
     }
   } catch (error) {
     console.error('❌ Firebase Admin initialization failed:', error.message);
