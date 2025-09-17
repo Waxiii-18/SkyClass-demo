@@ -13,6 +13,7 @@
     "demo-setup": "node demo-setup.js",
     "seed": "node -e \"require('./server/utils/seedData').seedData()\"",
     "start": "cd server && npm start",
+    "render-start": "cd server && npm start",
     "test": "cd client && npm test"
   },
   "keywords": [

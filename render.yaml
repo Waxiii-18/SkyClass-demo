@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: skyclass-server
+    env: node
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        value: demo-secret-key-for-hackathon
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_URL
+        value: https://your-frontend-url.netlify.app
+      - key: FIREBASE_PROJECT_ID
+        value: skyclass-demo
+      - key: FIREBASE_PRIVATE_KEY_ID
+        value: your-private-key-id
+      - key: FIREBASE_PRIVATE_KEY
+        value: your-private-key
+      - key: FIREBASE_CLIENT_EMAIL
+        value: your-client-email
+      - key: FIREBASE_CLIENT_ID
+        value: your-client-id
+      - key: FIREBASE_AUTH_URI
+        value: https://accounts.google.com/o/oauth2/auth
+      - key: FIREBASE_TOKEN_URI
+        value: https://oauth2.googleapis.com/token

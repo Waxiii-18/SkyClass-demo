@@ -37,12 +37,30 @@ app.use('/api/courses', courseRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to SkyClass API',
+    version: '1.0.0',
+    status: 'Server is running successfully',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/auth',
+      courses: '/api/courses',
+      users: '/api/users',
+      admin: '/api/admin'
+    },
+    documentation: 'This is the backend API for SkyClass educational platform'
+  });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
     timestamp: new Date().toISOString(),
-    message: 'SkyClass API is running'
+    message: 'SkyClass API is running',
+    environment: process.env.NODE_ENV || 'development'
   });
 });
 
